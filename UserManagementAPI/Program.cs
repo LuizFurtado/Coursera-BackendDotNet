@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.HttpResults;
+using UserManagementAPI.Middlewares;
 using UserManagementAPI.Models;
 using UserManagementAPI.Services;
 
@@ -10,6 +11,7 @@ builder.Services.AddSingleton<UserService>();
 
 var app = builder.Build();
 
+// Global exception handler — catches unhandled exceptions
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>
@@ -25,6 +27,11 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
+// Request logging — logs method, path, and status code
+app.UseMiddleware<RequestLoggingMiddleware>();
+
+// Token authentication — validates bearer tokens
+app.UseMiddleware<TokenAuthenticationMiddleware>();
 
 app.MapGet("/users", (UserService service) =>
     TypedResults.Ok(service.GetAll()));
