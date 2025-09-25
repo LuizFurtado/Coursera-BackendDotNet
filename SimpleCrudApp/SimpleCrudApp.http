@@ -1,0 +1,29 @@
+@SimpleCrudApp_HostAddress = http://localhost:5041
+
+GET {{SimpleCrudApp_HostAddress}}
+
+###
+GET {{SimpleCrudApp_HostAddress}}/items
+
+###
+GET {{SimpleCrudApp_HostAddress}}/items/7
+
+###
+POST {{SimpleCrudApp_HostAddress}}/items
+content-type: application/json
+
+{
+  "Id": 35,
+  "Name": "Created from POST"
+}
+###
+
+PUT {{SimpleCrudApp_HostAddress}}/items/3
+content-type: application/json
+
+{
+  "Name": "Updated from PUT"
+}
+
+###
+DELETE {{SimpleCrudApp_HostAddress}}/items/35

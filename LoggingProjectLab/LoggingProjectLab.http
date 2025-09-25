@@ -1,0 +1,6 @@
+@LoggingProjectLab_HostAddress = http://localhost:5067
+
+GET {{LoggingProjectLab_HostAddress}}/api/ErrorHandling/division?numerator=10&denominator=0
+Accept: application/json
+
+###

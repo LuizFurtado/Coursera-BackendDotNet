@@ -1,0 +1,5 @@
+@DependencyInjectionProject_HostAddress = http://localhost:5039
+
+GET {{DependencyInjectionProject_HostAddress}}/
+
+###
